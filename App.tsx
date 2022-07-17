@@ -1,14 +1,16 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import _App from "./screens/app/_App";
+import _Auth from "./screens/auth/_Auth";
 
-//Navigators are prefixed with _
+//** Navigators are prefixed with _  **/
+
+const isLoggedIn = false;
+
 export default function App() {
   return (
-    <View>
-      {/* //Stack.Navigator
-//isLoggedIn?  App : Auth
-//Stack.Navigator */}
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      {isLoggedIn ? <_App /> : <_Auth />}
+    </NavigationContainer>
   );
 }
