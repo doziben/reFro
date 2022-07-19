@@ -6,9 +6,9 @@ type authScreens = {
 
 //* APP *//
 type appScreens = {
-  Account: undefined;
-  Today: undefined;
-  Workspace: undefined;
+  _Account: undefined;
+  _Today: undefined;
+  _Workspace: undefined;
 };
 
 type accountScreens = {
@@ -23,7 +23,7 @@ type todayScreens = {
 //* WORKSPACE *//
 type workspaceScreens = {
   Workspace: undefined;
-  Teamlist: undefined;
+  _Teamlist: undefined;
 };
 
 type teamListScreens = {
