@@ -8,14 +8,36 @@ const AuthStackNav = createNativeStackNavigator<authScreens>();
 
 const _Auth = () => {
   return (
-    <AuthStackNav.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <AuthStackNav.Screen name="Onboarding" component={Onboarding} />
-      <AuthStackNav.Screen name="SignUp" component={SignUp} />
-      <AuthStackNav.Screen name="Login" component={Login} />
+    <AuthStackNav.Navigator screenOptions={{}}>
+      <AuthStackNav.Screen
+        name="Onboarding"
+        options={{
+          headerShown: false,
+        }}
+        component={Onboarding}
+      />
+      <AuthStackNav.Screen
+        name="SignUp"
+        options={{
+          presentation: "modal",
+          title: "Sign Up",
+          contentStyle: {
+            backgroundColor: "white",
+          },
+        }}
+        component={SignUp}
+      />
+      <AuthStackNav.Screen
+        name="Login"
+        component={Login}
+        options={{
+          presentation: "modal",
+          title: "Sign In",
+          contentStyle: {
+            backgroundColor: "white",
+          },
+        }}
+      />
     </AuthStackNav.Navigator>
   );
 };

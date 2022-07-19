@@ -27,8 +27,11 @@ const Onboarding = ({}: OnboardingScreen) => {
   const backgroundIsDark = slideState === 3;
 
   const navigation = useNavigation<OnboardingScreen["navigation"]>();
+
+  //Get the ID and status when the app is opened and if its a new user,
+  //pass in true to the route params
   const getStartedHandler = () => {
-    navigation.navigate("SignUp");
+    navigation.navigate("SignUp", { newUser: true });
   };
 
   const SlideC: JSX.Element = (
@@ -36,10 +39,13 @@ const Onboarding = ({}: OnboardingScreen) => {
       shade="dark"
       title="See reports from team members"
       image={
-        <Image
-          source={require("../../assets/onboardingImgs/onboarding-3.png")}
-          style={{ width: "150%", height: "150%", marginTop: "-100%" }}
-        />
+        <View style={styles.imageWrapper}>
+          <Image
+            resizeMode="contain"
+            source={require("../../assets/onboardingImgs/onboarding-3.png")}
+            style={{ width: "85%", height: "85%", marginTop: -10 }}
+          />
+        </View>
       }
     />
   );
@@ -51,11 +57,14 @@ const Onboarding = ({}: OnboardingScreen) => {
       <View
         style={[styles.wrapper, backgroundIsDark ? styles.dark : styles.light]}
       >
+        {/* Slides */}
         {slideState === 3 && SlideC}
 
+        {/* Button */}
         <View style={styles.buttonWrapper}>
           <PrimaryButton
             title="Get Started"
+            icon="chevrons-right"
             onPress={getStartedHandler}
             type="aside"
           />
@@ -69,12 +78,19 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
   },
-  buttonWrapper: {},
+  buttonWrapper: {
+    top: "-8%",
+    marginHorizontal: 20,
+  },
   dark: {
     backgroundColor: colors.Primary[100],
   },
   light: {
     backgroundColor: "",
+  },
+  imageWrapper: {
+    width: "100%",
+    alignItems: "center",
   },
 });
 export default Onboarding;

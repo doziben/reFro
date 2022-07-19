@@ -17,14 +17,13 @@ const OnboardingSlide = ({ title, shade, image }: slideProps) => {
           {title}
         </Text>
       </View>
-
-      <View style={[styles.textWrapper]}>{image}</View>
+      {image}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: { flex: 1, marginTop: "30%" },
+  wrapper: { marginTop: "30%" },
   title: {
     textAlign: "center",
     fontSize: 32,
@@ -32,7 +31,6 @@ const styles = StyleSheet.create({
     maxWidth: 284,
   },
   textWrapper: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     zIndex: 5,

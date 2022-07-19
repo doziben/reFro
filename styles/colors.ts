@@ -21,6 +21,8 @@ const colors: colors = {
   },
   Accent: {
     100: "#15E186",
+    200: "#5D84E8",
+    300: "#07B8F8",
   },
 };
 
