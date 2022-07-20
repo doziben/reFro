@@ -8,7 +8,13 @@ const WorkspaceStackNav = createNativeStackNavigator<workspaceScreens>();
 const _Workspace = () => {
   return (
     <WorkspaceStackNav.Navigator>
-      <WorkspaceStackNav.Screen name="Workspace" component={Workspace} />
+      <WorkspaceStackNav.Screen
+        name="Workspace"
+        component={Workspace}
+        options={{
+          headerLargeTitle: true,
+        }}
+      />
       <WorkspaceStackNav.Screen name="_Teamlist" component={_Teamlist} />
     </WorkspaceStackNav.Navigator>
   );

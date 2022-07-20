@@ -13,6 +13,10 @@ interface colors {
   Accent: colorObj;
   Bg: colorObj;
   Text: colorObj;
+  Border: colorObj;
+  info: colorObj;
+  success: colorObj;
+  warning: colorObj;
 }
 
 const colors: colors = {
@@ -24,6 +28,12 @@ const colors: colors = {
     200: "#5D84E8",
     300: "#07B8F8",
   },
+  Bg: { 100: "#F3F3F3", 200: "#F3EFE2" },
+  Text: {},
+  Border: { 100: "#EDEDED" },
+  info: { 100: "#D5EDFB", 200: "#5D84E8" },
+  success: { 100: "#E3FCF1", 200: "#0FA060" },
+  warning: { 100: "#FCE6E5", 200: "#E87E5D" },
 };
 
 export default colors;

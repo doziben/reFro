@@ -7,9 +7,26 @@ const TodayStackNav = createNativeStackNavigator<todayScreens>();
 
 const _Today = () => {
   return (
-    <TodayStackNav.Navigator>
-      <TodayStackNav.Screen name="Today" component={Today} />
-      <TodayStackNav.Screen name="Report" component={Report} />
+    <TodayStackNav.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#F3F3F3" },
+        contentStyle: { backgroundColor: "#F3F3F3" },
+      }}
+    >
+      <TodayStackNav.Screen
+        name="Today"
+        component={Today}
+        options={{
+          headerLargeTitle: true,
+        }}
+      />
+      <TodayStackNav.Screen
+        name="Report"
+        component={Report}
+        options={{
+          presentation: "modal",
+        }}
+      />
     </TodayStackNav.Navigator>
   );
 };

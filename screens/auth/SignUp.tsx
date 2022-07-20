@@ -2,30 +2,48 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   ScrollView,
   KeyboardAvoidingView,
 } from "react-native";
 import HeadingText from "../../components/atoms/HeadingText";
 import PrimaryButton from "../../components/atoms/PrimaryButton";
+import ToastModal from "../../components/atoms/ToastModal";
 import SignUpForm, {
   signUpFormValues,
 } from "../../components/forms/SignUpForm";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import { AppSlice } from "../../store/AppSlice";
 import { authScreens } from "../../types/navigation";
 
 type SignUpScreen = NativeStackScreenProps<authScreens, "SignUp">;
 
 const SignUp = ({ navigation, route }: SignUpScreen) => {
   const [formValues, setFormValues] = useState<signUpFormValues>();
+  const [formErr, setFormErr] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
   const newUser = route.params?.newUser;
+
+  const formIsValid =
+    (formValues?.firstName && formValues.lastName && formValues.password) !==
+    "";
 
   useEffect(() => {
     !newUser && navigation.replace("Login");
   }, [newUser]);
 
   const signUpHandler = () => {
-    //dispatch redux action of setting the userInfo as form values in appslice and setting auth to true
+    formIsValid
+      ? (dispatch(
+          AppSlice.actions.logIn({
+            name: "Emeka",
+            company: "Frolancer",
+            newUser: false,
+            uid: "FRO19J1155",
+          })
+        ),
+        setFormErr(false))
+      : setFormErr(true);
   };
 
   return (
@@ -41,21 +59,29 @@ const SignUp = ({ navigation, route }: SignUpScreen) => {
           />
         </View>
 
+        {/* SignUp form */}
         <KeyboardAvoidingView>
-          {/* SignUp form */}
           <SignUpForm submitHandler={(values) => setFormValues(values)} />
 
-          {/* Button */}
-          <View style={styles.buttonWrapper}>
-            <PrimaryButton
-              onPress={() => {
-                signUpHandler();
-              }}
-              title="Continue"
-              type="full"
+          {/* Error Toast Modal */}
+          {formErr && (
+            <ToastModal
+              yourMessage="Jeez c'mon, we need ALL your details to sign you up.."
+              type="warning"
             />
-          </View>
+          )}
         </KeyboardAvoidingView>
+
+        {/* SignUp Button */}
+        <View style={[formErr ? styles.errState : styles.buttonWrapper]}>
+          <PrimaryButton
+            onPress={() => {
+              signUpHandler();
+            }}
+            title="Continue"
+            type="full"
+          />
+        </View>
       </ScrollView>
     </>
   );
@@ -69,9 +95,11 @@ const styles = StyleSheet.create({
     marginVertical: 24,
   },
   buttonWrapper: {
-    marginBottom: 20,
+    marginTop: 60,
   },
-  buttoWrapper: {},
+  errState: {
+    marginTop: 16,
+  },
 });
 
 export default SignUp;

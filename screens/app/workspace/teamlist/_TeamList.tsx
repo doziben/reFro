@@ -8,7 +8,13 @@ const TeamlistStackNav = createNativeStackNavigator<teamListScreens>();
 const _Teamlist = () => {
   return (
     <TeamlistStackNav.Navigator>
-      <TeamlistStackNav.Screen name="Teamlist" component={Teamlist} />
+      <TeamlistStackNav.Screen
+        name="Teamlist"
+        component={Teamlist}
+        options={{
+          headerSearchBarOptions: { placeholder: "Search members" },
+        }}
+      />
       <TeamlistStackNav.Screen name="Teammembers" component={TeamMember} />
     </TeamlistStackNav.Navigator>
   );
