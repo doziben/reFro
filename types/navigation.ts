@@ -17,7 +17,7 @@ type accountScreens = {
 
 type todayScreens = {
   Today: undefined;
-  Report: { type: "edit" | "create"; value: string };
+  Report: { type: "edit" | "create"; value: string; date: Date | undefined };
 };
 
 //* WORKSPACE *//
