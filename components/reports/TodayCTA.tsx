@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
   valueText: {
     fontSize: 18,
     fontStyle: "italic",
-    color: colors.Text[100],
+    color: colors.Text[200],
+    fontWeight: "300",
   },
 });
 

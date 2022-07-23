@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { dateType } from "../types/navigation";
 
 interface reportState {
-  date: Date | undefined;
+  date: dateType | undefined;
   value: string;
 }
 

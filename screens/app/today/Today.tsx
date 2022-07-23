@@ -23,6 +23,8 @@ const Today = ({ navigation, route }: TodayScreen) => {
   let notSet = todayReport === "";
   const todayReportStatus = notSet ? false : true;
 
+  //** Check Report State and clear it if it's set and the date value is not equal to current Date */
+
   //** Dispatching report-related actions */
   function reportHandler() {
     const navType = notSet ? "create" : "edit";

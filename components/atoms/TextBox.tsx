@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
   regular: {
     elevation: 15,
     shadowColor: "black",
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
   },
   rounded: {
     borderRadius: 12,

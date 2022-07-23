@@ -15,12 +15,15 @@ type accountScreens = {
   Account: undefined;
 };
 
+const date = new Date().toLocaleString();
+export type dateType = typeof date;
+
 type todayScreens = {
   Today: undefined;
   Report: {
     type: "edit" | "create";
     value: string;
-    date: Date["toLocaleString"] | undefined | string;
+    date: dateType | undefined;
   };
 };
 
