@@ -1,14 +1,21 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
-import { ScrollView, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { todayScreens } from "../../../types/navigation";
 import TodayCTA from "../../../components/reports/TodayCTA";
 import useAppSelector from "../../../hooks/useAppSelector";
+import ReportList from "../../../components/reports/ReportList";
+import { text } from "../../../styles/text";
+import { useState } from "react";
 
 type TodayScreen = NativeStackScreenProps<todayScreens, "Today">;
+type PeriodFilterView = "week" | "month" | "year";
 
 const Today = ({ navigation, route }: TodayScreen) => {
-  //** Managing Report State *//
+  //** Managing Period Filter State */
+  const [periodState, setPeriodState] = useState<PeriodFilterView>("week");
+
+  //** Managing Report State */
   const todayReport = useAppSelector((store) => {
     return store.report.value;
   });
@@ -19,10 +26,12 @@ const Today = ({ navigation, route }: TodayScreen) => {
   //** Dispatching report-related actions */
   function reportHandler() {
     const navType = notSet ? "create" : "edit";
+    const reportDate = new Date().toLocaleString();
+
     navigation.navigate("Report", {
       type: navType,
       value: todayReport,
-      date: new Date(),
+      date: reportDate,
     });
   }
 
@@ -31,7 +40,7 @@ const Today = ({ navigation, route }: TodayScreen) => {
       <ExpoStatusBar style="dark" />
 
       {/* Today CTA */}
-      <View>
+      <View style={styles.marginHelper}>
         <TodayCTA
           done={todayReportStatus}
           values={todayReport}
@@ -40,22 +49,28 @@ const Today = ({ navigation, route }: TodayScreen) => {
       </View>
 
       {/* Reports List */}
-      <View>
-        <View>
-          {
-            //heading and periodDropdown
-          }
+      <View style={styles.marginHelper}>
+        <View style={styles.headingWrapper}>
+          <Text style={styles.subHeading}>Reports</Text>
         </View>
 
-        <View>
-          {
-            //report List
-            //Render report data in flatlist here
-          }
-        </View>
+        <View>{/* <ReportList view={periodState} /> */}</View>
       </View>
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  marginHelper: {
+    marginTop: 28,
+  },
+  headingWrapper: {
+    marginHorizontal: 20,
+  },
+  subHeading: {
+    fontSize: text.subHeading.fontSize,
+    fontWeight: "bold",
+  },
+});
 
 export default Today;

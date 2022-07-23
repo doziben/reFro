@@ -2,19 +2,19 @@ import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import TextBox from "../atoms/TextBox";
 
-interface signUpFormValues {
-  firstName: string | number;
-  lastName: string | number;
+interface SignInFormValues {
+  companyId: string | number;
+  emailAddress: string | number;
   password: string | number;
 }
-interface signUpFormProps {
-  submitHandler: (values: signUpFormValues) => void;
+interface SignInFormProps {
+  submitHandler: (values: SignInFormValues) => void;
 }
 
-const SignUpForm = ({ submitHandler }: signUpFormProps) => {
-  const [formValues, setFormValues] = useState<signUpFormValues>({
-    firstName: "",
-    lastName: "",
+const SignInForm = ({ submitHandler }: SignInFormProps) => {
+  const [formValues, setFormValues] = useState<SignInFormValues>({
+    companyId: "",
+    emailAddress: "",
     password: "",
   });
 
@@ -26,28 +26,28 @@ const SignUpForm = ({ submitHandler }: signUpFormProps) => {
   return (
     <View style={styles.wrapper}>
       <TextBox
-        placeHolder="What's your first name?"
+        placeHolder="Company ID"
         type="form"
         rounded="top"
         onChangeText={(text) =>
           setFormValues((prev) => {
-            return { ...prev, firstName: text };
+            return { ...prev, companyId: text };
           })
         }
       />
       <TextBox
-        placeHolder="andd... last name?"
+        placeHolder="Email Address"
         type="form"
         rounded="none"
         onChangeText={(text) =>
           setFormValues((prev) => {
-            return { ...prev, lastName: text };
+            return { ...prev, emailAddress: text };
           })
         }
         extraInputOptions={{ autoCapitalize: "none", autoCorrect: false }}
       />
       <TextBox
-        placeHolder="Set a password"
+        placeHolder="Password"
         type="form"
         rounded="bottom"
         onChangeText={(text) =>
@@ -55,7 +55,9 @@ const SignUpForm = ({ submitHandler }: signUpFormProps) => {
             return { ...prev, password: text };
           })
         }
-        extraInputOptions={{ secureTextEntry: true }}
+        extraInputOptions={{
+          secureTextEntry: true,
+        }}
       />
     </View>
   );
@@ -67,6 +69,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export { signUpFormValues };
+export { SignInFormValues };
 
-export default SignUpForm;
+export default SignInForm;

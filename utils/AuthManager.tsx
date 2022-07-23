@@ -12,6 +12,7 @@ const AuthManager = () => {
 
   return (
     <NavigationContainer>
+      {/* Render Modal if true */}
       {isLoggedIn ? <_App /> : <_Auth />}
     </NavigationContainer>
   );

@@ -31,6 +31,7 @@ const AppSlice = createSlice({
         },
       });
     },
+
     logOut: (state: AppState, action: PayloadAction<User>) => {
       return (state = {
         auth: false,

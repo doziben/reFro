@@ -31,12 +31,12 @@ const TodayCTA = ({ done, values, onPress }: todayCTAProps) => {
       <View
         style={[styles.titleWrapper, { backgroundColor: titleWrapperColor }]}
       >
-        <Text style={styles.titleText}>{titleText}</Text>
         {done ? (
           <Octicons name="verified" color={colors.Primary[100]} size={24} />
         ) : (
           <AntDesign name="rocket1" color={colors.Primary[100]} size={24} />
         )}
+        <Text style={styles.titleText}>{titleText}</Text>
       </View>
 
       {/* Button */}
@@ -45,7 +45,7 @@ const TodayCTA = ({ done, values, onPress }: todayCTAProps) => {
           onPress={onPress}
           style={({ pressed }) => [styles.button, pressed && styles.pressed]}
         >
-          <Text>{valueText}</Text>
+          <Text style={styles.valueText}>{valueText}</Text>
         </Pressable>
       </View>
     </View>
@@ -56,11 +56,31 @@ const styles = StyleSheet.create({
   wrapper: {
     marginHorizontal: 20,
   },
-  titleWrapper: {},
-  button: {},
-  pressed: {},
-  titleText: {},
-  valueText: {},
+  titleWrapper: {
+    padding: 10,
+    borderRadius: 16,
+    flexDirection: "row",
+  },
+  button: {
+    padding: 16,
+    backgroundColor: "white",
+    borderRadius: 16,
+    marginTop: 8,
+  },
+  pressed: {
+    opacity: 0.5,
+  },
+  titleText: {
+    color: colors.Primary[100],
+    fontSize: 20,
+    fontWeight: "bold",
+    marginLeft: 16,
+  },
+  valueText: {
+    fontSize: 18,
+    fontStyle: "italic",
+    color: colors.Text[100],
+  },
 });
 
 export default TodayCTA;
