@@ -23,7 +23,6 @@ const SignUp = ({ navigation, route }: SignUpScreen) => {
   const [formErr, setFormErr] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const newUser = route.params?.newUser;
-
   const formIsValid =
     (formValues?.firstName && formValues.lastName && formValues.password) !==
     "";
@@ -36,9 +35,9 @@ const SignUp = ({ navigation, route }: SignUpScreen) => {
     formIsValid
       ? (dispatch(
           AppSlice.actions.logIn({
-            name: "Emeka",
+            name: formValues!.firstName.toString(),
             company: "Frolancer",
-            newUser: false,
+            newUser: true,
             uid: "FRO19J1155",
           })
         ),

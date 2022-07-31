@@ -7,6 +7,10 @@ import useAppSelector from "../../../hooks/useAppSelector";
 import ReportList from "../../../components/reports/ReportList";
 import { text } from "../../../styles/text";
 import { useState } from "react";
+import SelectOption, {
+  SelectOptionItemProps,
+} from "../../../components/modals/SelectOption";
+import { mockReportData } from "../../../utils/mockData";
 
 type TodayScreen = NativeStackScreenProps<todayScreens, "Today">;
 type PeriodFilterView = "week" | "month" | "year";
@@ -36,7 +40,7 @@ const Today = ({ navigation, route }: TodayScreen) => {
       date: reportDate,
     });
   }
-
+  const selectOptionsData: SelectOptionItemProps[] = [];
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
       <ExpoStatusBar style="dark" />
@@ -54,9 +58,12 @@ const Today = ({ navigation, route }: TodayScreen) => {
       <View style={styles.marginHelper}>
         <View style={styles.headingWrapper}>
           <Text style={styles.subHeading}>Reports</Text>
+          <SelectOption options={selectOptionsData} title="" />
         </View>
 
-        <View>{/* <ReportList view={periodState} /> */}</View>
+        <View>
+          <ReportList view={periodState} data={mockReportData} />
+        </View>
       </View>
     </ScrollView>
   );
@@ -68,6 +75,9 @@ const styles = StyleSheet.create({
   },
   headingWrapper: {
     marginHorizontal: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   subHeading: {
     fontSize: text.subHeading.fontSize,
