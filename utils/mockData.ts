@@ -2,11 +2,8 @@
 //for that week (with the values null) and upload to the database then for everytime a
 //value is set, the system will fetch the current day from the data base and update it's value
 
-export interface staffReport {
-  id: string;
-  date: Date;
-  value: string;
-}
+import { staffReport } from "../types/report";
+import { teamReport } from "../types/teamReport";
 
 function randomLetter() {
   const alphabets = [
@@ -96,4 +93,23 @@ const mockReportData: staffReport[] = [
   { date: new Date(2022, 8, 2), id: idGenerator(), value: "" },
 ];
 
-export { mockReportData };
+const mockTeamReportData: teamReport[] = [
+  {
+    value:
+      "Made changes to the front end code for AfricExpay to make sure all redux actions were dispatched",
+    date: new Date(),
+    avatarUrl: require("../assets/avatars/1.png"),
+    id: idGenerator(),
+    staffName: "Linda Nuru",
+  },
+  {
+    value:
+      "Revamped the backend code writted earlier to remove all forms of insecurity and bugs",
+    date: new Date(2022, 7, 6, 12, 23),
+    avatarUrl: require("../assets/avatars/2.png"),
+    id: idGenerator(),
+    staffName: "Jew Ayodele",
+  },
+];
+
+export { mockReportData, mockTeamReportData, staffReport };

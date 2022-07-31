@@ -10,7 +10,7 @@ const Teamlist = ({ navigation, route }: TeamlistScreens) => {
       <Button
         title="Text Link"
         onPress={() => [
-          navigation.navigate("Teammembers", { name: "Solange", id: "haha" }),
+          navigation.navigate("Teammembers", { name: "Emeka", id: "haha" }),
         ]}
       />
     </ScrollView>
