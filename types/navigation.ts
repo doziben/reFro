@@ -29,13 +29,13 @@ type todayScreens = {
 
 //* WORKSPACE *//
 type workspaceScreens = {
-  Workspace: undefined;
+  Workplace: undefined;
   _Teamlist: undefined;
 };
 
 type teamListScreens = {
   Teamlist: undefined;
-  Teammembers: undefined;
+  Teammembers: { name: string; id: string };
 };
 
 export {
