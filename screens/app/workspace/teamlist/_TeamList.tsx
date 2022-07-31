@@ -18,11 +18,16 @@ type TeamListScreenProps = NativeStackScreenProps<
 
 const _Teamlist = ({ navigation, route }: TeamListScreenProps) => {
   return (
-    <TeamlistStackNav.Navigator>
+    <TeamlistStackNav.Navigator
+      screenOptions={{
+        contentStyle: { backgroundColor: "white" },
+      }}
+    >
       <TeamlistStackNav.Screen
         name="Teamlist"
         component={Teamlist}
         options={{
+          title: "Team List",
           presentation: "modal",
           headerSearchBarOptions: { placeholder: "Search members" },
           headerLargeTitle: true,

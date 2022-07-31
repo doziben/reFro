@@ -35,7 +35,7 @@ type workspaceScreens = {
 
 type teamListScreens = {
   Teamlist: undefined;
-  Teammembers: { name: string; id: string };
+  Teammembers: { name: string; id: string; role: string };
 };
 
 export {

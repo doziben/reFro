@@ -1,20 +1,44 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Button, ScrollView } from "react-native";
+import { FlatList, ScrollView, StyleSheet, Text } from "react-native";
+import TeamMemberAvatar from "../../../../components/workplace/TeamMember";
 import { teamListScreens } from "../../../../types/navigation";
+import { mockTeamAvatarData } from "../../../../utils/mockData";
 
 type TeamlistScreens = NativeStackScreenProps<teamListScreens, "Teamlist">;
 
 const Teamlist = ({ navigation, route }: TeamlistScreens) => {
+  //* For handling the user presses */
+  function userOnPressHandler(id: string, name: string, role: string) {
+    navigation.navigate("Teammembers", { name: name, id: id, role: role });
+  }
+
   return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <Button
-        title="Text Link"
-        onPress={() => [
-          navigation.navigate("Teammembers", { name: "Emeka", id: "haha" }),
-        ]}
-      />
-    </ScrollView>
+    <FlatList
+      style={styles.wrapper}
+      contentInsetAdjustmentBehavior="automatic"
+      keyExtractor={(item) => item.id}
+      data={mockTeamAvatarData}
+      renderItem={({ item }) => {
+        const { avatarUrl, name, id, role } = item;
+        return (
+          <TeamMemberAvatar
+            avatarUrl={avatarUrl}
+            name={name}
+            id={id}
+            onPress={() => {
+              userOnPressHandler(id, name, role);
+            }}
+          />
+        );
+      }}
+      numColumns={3}
+    />
   );
 };
 
+const styles = StyleSheet.create({
+  wrapper: {
+    marginHorizontal: 20,
+  },
+});
 export default Teamlist;

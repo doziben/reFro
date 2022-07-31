@@ -3,6 +3,7 @@
 //value is set, the system will fetch the current day from the data base and update it's value
 
 import { staffReport } from "../types/report";
+import { teamMemberItem } from "../types/teamMemberItem";
 import { teamReport } from "../types/teamReport";
 
 function randomLetter() {
@@ -112,4 +113,66 @@ const mockTeamReportData: teamReport[] = [
   },
 ];
 
-export { mockReportData, mockTeamReportData, staffReport };
+const mockTeamAvatarData: teamMemberItem[] = [
+  {
+    id: idGenerator(),
+    avatarUrl: require("../assets/avatars/1.png"),
+    name: "Licia",
+    role: "Design",
+  },
+  {
+    id: idGenerator(),
+    avatarUrl: require("../assets/avatars/2.png"),
+    name: "Ayodele",
+    role: "Frontend Dev",
+  },
+  {
+    id: idGenerator(),
+    avatarUrl: require("../assets/avatars/3.png"),
+    name: "Sandra",
+    role: "UI/UX",
+  },
+  {
+    id: idGenerator(),
+    avatarUrl: require("../assets/avatars/4.png"),
+    name: "Ken",
+    role: "Design",
+  },
+  {
+    id: idGenerator(),
+    avatarUrl: require("../assets/avatars/5.png"),
+    name: "Bode",
+    role: "Design",
+  },
+  {
+    id: idGenerator(),
+    avatarUrl: require("../assets/avatars/6.png"),
+    name: "Davies",
+    role: "Design",
+  },
+  {
+    id: idGenerator(),
+    avatarUrl: require("../assets/avatars/7.png"),
+    name: "Rubie",
+    role: "Marketing",
+  },
+  {
+    id: idGenerator(),
+    avatarUrl: require("../assets/avatars/8.png"),
+    name: "Ola",
+    role: "Design",
+  },
+  {
+    id: idGenerator(),
+    avatarUrl: require("../assets/avatars/9.png"),
+    name: "Elvis",
+    role: "FullStack Dev",
+  },
+  {
+    id: idGenerator(),
+    avatarUrl: require("../assets/avatars/10.png"),
+    name: "Denning",
+    role: "Mobile Dev",
+  },
+];
+export { mockReportData, mockTeamReportData, mockTeamAvatarData, staffReport };
