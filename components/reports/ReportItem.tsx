@@ -38,13 +38,15 @@ const ReportItem = ({ date, value, id }: ReportItemProps) => {
   return (
     <View style={styles.wrapper}>
       {/* Left Side / Day Wrapper */}
-      <View>
-        <Text>{dayName}</Text>
+      <View style={styles.dayWrapper}>
+        <Text style={styles.dayNametext}>{dayName}</Text>
 
         {/* Pin */}
-        <View>
-          <View style={styles.pinCircle}></View>
-          <View style={styles.pinBody}></View>
+        <View style={styles.pinWrapper}>
+          <View style={[styles.pinCircle, { borderColor: dateColor }]}></View>
+          <View
+            style={[styles.pinBody, laterDay && { borderStyle: "dashed" }]}
+          ></View>
         </View>
       </View>
 
@@ -70,19 +72,47 @@ const ReportItem = ({ date, value, id }: ReportItemProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginHorizontal: 20,
     flexDirection: "row",
   },
-  dayWrapper: {},
+  dayWrapper: {
+    flexDirection: "row",
+    marginRight: 8,
+  },
+  pinWrapper: {
+    marginHorizontal: 4,
+    alignItems: "center",
+  },
   valueWrapper: {
     borderRadius: 12,
+    minWidth: 273,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    marginBottom: 12,
+    width: "82%",
+    justifyContent: "space-between",
   },
-  pinCircle: {},
-  pinBody: {},
-  dateNumberText: {},
+  pinCircle: {
+    width: 12,
+    height: 12,
+    borderWidth: 2,
+    borderRadius: 200,
+  },
+  pinBody: {
+    borderColor: colors.Primary[100],
+    borderWidth: 0.5,
+    height: 80,
+    borderRadius: 1,
+  },
+  dateNumberText: {
+    fontWeight: "bold",
+  },
+  dayNametext: {
+    minWidth: 32,
+  },
   valueTextWrapper: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginTop: 8,
   },
   valueText: {},
 });

@@ -1,3 +1,7 @@
+//So i'm thinking; at the beginning of the week, the system will create a dummy data
+//for that week (with the values null) and upload to the database then for everytime a
+//value is set, the system will fetch the current day from the data base and update it's value
+
 export interface staffReport {
   id: string;
   date: Date;
