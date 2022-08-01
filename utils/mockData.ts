@@ -101,7 +101,8 @@ const mockTeamReportData: teamReport[] = [
     date: new Date(),
     avatarUrl: require("../assets/avatars/1.png"),
     id: idGenerator(),
-    staffName: "Linda Nuru",
+    staffName: "Licia",
+    role: "Design",
   },
   {
     value:
@@ -110,6 +111,7 @@ const mockTeamReportData: teamReport[] = [
     avatarUrl: require("../assets/avatars/2.png"),
     id: idGenerator(),
     staffName: "Jew Ayodele",
+    role: "Dev",
   },
 ];
 

@@ -10,7 +10,7 @@ const TeamReportList = ({ data }: TeamReportListProps) => {
   return (
     <View style={styles.wrapper}>
       {data.map((item) => {
-        const { avatarUrl, date, id, staffName, value } = item;
+        const { avatarUrl, date, id, staffName, value, role } = item;
         return (
           <TeamReportItem
             key={id}
@@ -19,6 +19,7 @@ const TeamReportList = ({ data }: TeamReportListProps) => {
             date={date}
             id={id}
             staffName={staffName}
+            role={role}
           />
         );
       })}

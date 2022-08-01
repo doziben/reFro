@@ -13,6 +13,8 @@ type appScreens = {
 
 type accountScreens = {
   Account: undefined;
+  EditAccount: { id: string };
+  ChangePassword: undefined;
 };
 
 const date = new Date().toLocaleString();

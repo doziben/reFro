@@ -1,24 +1,42 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { teamReport } from "../../types/teamReport";
 import colors from "../../styles/colors";
 import getTimeString from "../../utils/getTimeString";
+import { useNavigation } from "@react-navigation/native";
+import { WorkspaceScreenProps } from "../../screens/app/workspace/Workspace";
 
 const TeamReportItem = ({
   avatarUrl,
   date,
   id,
   staffName,
+  role,
   value,
 }: teamReport) => {
   const time = getTimeString({ date });
+  const navigator = useNavigation();
+
+  //* Handles routing to the user avatar */
+  function teamNavigationHandler() {
+    navigator.navigate("_Teamlist", {
+      screen: "Teammembers",
+      params: { id, role, name: staffName },
+    });
+  }
+
   return (
     <View style={styles.wrapper}>
       {/* Top Wrapper */}
       <View style={styles.topWrapper}>
-        <View style={styles.nameWrapper}>
-          <Image source={avatarUrl} style={styles.avatarImg} />
-          <Text style={styles.staffNameText}>{staffName}</Text>
-        </View>
+        <Pressable
+          onPress={teamNavigationHandler}
+          style={({ pressed }) => [pressed && styles.pressed]}
+        >
+          <View style={styles.nameWrapper}>
+            <Image source={avatarUrl} style={styles.avatarImg} />
+            <Text style={styles.staffNameText}>{staffName}</Text>
+          </View>
+        </Pressable>
         <Text style={styles.timeText}>{time}</Text>
       </View>
 
@@ -61,6 +79,9 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
     fontSize: 17,
     color: colors.Text[100],
+  },
+  pressed: {
+    opacity: 0.5,
   },
 });
 

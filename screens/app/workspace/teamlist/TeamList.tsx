@@ -4,9 +4,12 @@ import TeamMemberAvatar from "../../../../components/workplace/TeamMember";
 import { teamListScreens } from "../../../../types/navigation";
 import { mockTeamAvatarData } from "../../../../utils/mockData";
 
-type TeamlistScreens = NativeStackScreenProps<teamListScreens, "Teamlist">;
+export type TeamlistScreenProps = NativeStackScreenProps<
+  teamListScreens,
+  "Teamlist"
+>;
 
-const Teamlist = ({ navigation, route }: TeamlistScreens) => {
+const Teamlist = ({ navigation, route }: TeamlistScreenProps) => {
   //* For handling the user presses */
   function userOnPressHandler(id: string, name: string, role: string) {
     navigation.navigate("Teammembers", { name: name, id: id, role: role });

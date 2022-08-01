@@ -5,5 +5,6 @@ export interface teamReport {
   date: Date;
   value: string;
   staffName: string;
+  role: string;
   avatarUrl: ImageSourcePropType;
 }

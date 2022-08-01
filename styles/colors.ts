@@ -1,6 +1,6 @@
 import { ColorValue } from "react-native";
 
-type color = string | ColorValue | undefined;
+export type color = string | ColorValue | undefined;
 
 interface colorObj {
   100: color;

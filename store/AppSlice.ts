@@ -32,7 +32,7 @@ const AppSlice = createSlice({
       });
     },
 
-    logOut: (state: AppState, action: PayloadAction<User>) => {
+    logOut: (state: AppState) => {
       return (state = {
         auth: false,
         user: null,

@@ -7,9 +7,12 @@ import TeamReportCount from "../../../components/workplace/TeamReportCount";
 import TeamReportList from "../../../components/reports/TeamReportList";
 import { mockTeamReportData } from "../../../utils/mockData";
 
-type WorkspaceScreen = NativeStackScreenProps<workspaceScreens, "Workplace">;
+export type WorkspaceScreenProps = NativeStackScreenProps<
+  workspaceScreens,
+  "Workplace"
+>;
 
-const Workspace = ({ navigation, route }: WorkspaceScreen) => {
+const Workspace = ({ navigation, route }: WorkspaceScreenProps) => {
   const currentDayIndex = new Date().getDay();
   const [dayIndex, setDayIndex] = useState<number>(currentDayIndex);
 

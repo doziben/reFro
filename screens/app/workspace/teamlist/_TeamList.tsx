@@ -11,12 +11,12 @@ import Teamlist from "./TeamList";
 import TeamMember from "./TeamMember";
 
 const TeamlistStackNav = createNativeStackNavigator<teamListScreens>();
-type TeamListScreenProps = NativeStackScreenProps<
+export type _TeamListScreenProps = NativeStackScreenProps<
   workspaceScreens,
   "_Teamlist"
 >;
 
-const _Teamlist = ({ navigation, route }: TeamListScreenProps) => {
+const _Teamlist = ({ navigation, route }: _TeamListScreenProps) => {
   return (
     <TeamlistStackNav.Navigator
       screenOptions={{
@@ -48,6 +48,16 @@ const _Teamlist = ({ navigation, route }: TeamListScreenProps) => {
         component={TeamMember}
         options={{
           presentation: "modal",
+          headerRight: () => {
+            return (
+              <PressableIcon
+                name="x-circle"
+                onPress={() => {
+                  navigation.goBack();
+                }}
+              />
+            );
+          },
         }}
       />
     </TeamlistStackNav.Navigator>

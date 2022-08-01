@@ -19,8 +19,11 @@ const TeamMember = ({ navigation, route }: TeammemberScreens) => {
   }, [name]);
 
   //* Fetch the report data of the team member via id */
-  const user = mockTeamAvatarData.find((item) => item.id === id);
-  const userAvatar = user!.avatarUrl;
+  const defaultAvatarUrl = require("../../../../assets/avatars/3.png");
+  const user = mockTeamAvatarData.find(
+    (item) => item.id === id || item.name === name
+  );
+  const userAvatar = (user && user.avatarUrl) || defaultAvatarUrl;
 
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">

@@ -1,5 +1,6 @@
 import { Feather } from "@expo/vector-icons";
-import { StyleSheet, View, Text, Pressable } from "react-native";
+import React, { useRef } from "react";
+import { StyleSheet, View, Text, Pressable, ViewComponent } from "react-native";
 import colors from "../../styles/colors";
 import dateUtil from "../../utils/dateUtil";
 import getDayName from "../../utils/getDayName";
@@ -10,9 +11,12 @@ interface ReportItemProps {
   date: Date;
   value: string;
   id: string;
+  staff?: boolean;
 }
 
-const ReportItem = ({ date, value, id }: ReportItemProps) => {
+const ReportItem = ({ date, value, id, staff }: ReportItemProps) => {
+  const wrapperRef = useRef<ViewComponent>();
+
   const valueIsNotSet = value === "" || undefined;
   const currentDay: boolean = isCurrentDay({ date });
   const laterDay: boolean = isLaterDay({ date });
@@ -24,6 +28,7 @@ const ReportItem = ({ date, value, id }: ReportItemProps) => {
   let backgroundColor = "#E6F8FE";
   let dateColor = colors.Primary[100];
   let valueText = value;
+  let pinBodyHeight = 100;
 
   if (noUpdates) {
     valueText = "No updates given...";
@@ -31,8 +36,9 @@ const ReportItem = ({ date, value, id }: ReportItemProps) => {
   } else if (laterDay) {
     valueText = "Upcoming";
     backgroundColor = "#F3F3F3";
+    pinBodyHeight = 70;
   } else if (currentDay) {
-    dateColor = colors.Accent[100];
+    dateColor = colors.Accent[200];
   }
 
   return (
@@ -45,7 +51,11 @@ const ReportItem = ({ date, value, id }: ReportItemProps) => {
         <View style={styles.pinWrapper}>
           <View style={[styles.pinCircle, { borderColor: dateColor }]}></View>
           <View
-            style={[styles.pinBody, laterDay && { borderStyle: "dashed" }]}
+            style={[
+              styles.pinBody,
+              { height: pinBodyHeight },
+              laterDay && { borderStyle: "dashed" },
+            ]}
           ></View>
         </View>
       </View>
@@ -56,10 +66,12 @@ const ReportItem = ({ date, value, id }: ReportItemProps) => {
           {dateNumber}
         </Text>
         <View style={styles.valueTextWrapper}>
-          <Text style={styles.valueText}>{valueText}</Text>
+          <Text style={[styles.valueText, laterDay && styles.upcomingText]}>
+            {valueText}
+          </Text>
 
           {/* Edit Icon */}
-          {noUpdates && (
+          {noUpdates && !staff && (
             <Pressable>
               <Feather name="edit-3" size={24} color={colors.Primary[100]} />
             </Pressable>
@@ -100,7 +112,6 @@ const styles = StyleSheet.create({
   pinBody: {
     borderColor: colors.Primary[100],
     borderWidth: 0.5,
-    height: 80,
     borderRadius: 1,
   },
   dateNumberText: {
@@ -114,6 +125,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginTop: 8,
   },
-  valueText: {},
+  valueText: {
+    fontSize: 16,
+  },
+  upcomingText: {
+    color: colors.Text[100],
+    fontStyle: "italic",
+  },
 });
 export default ReportItem;
